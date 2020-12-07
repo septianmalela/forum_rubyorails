@@ -6,4 +6,8 @@ class ForumThreadsController < ApplicationController
 	def show
 		@threads = ForumThread.find(params[:id])
 	end
+
+	def new
+		@thread = ForumThread.new
+	end
 end

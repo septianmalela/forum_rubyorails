@@ -1,0 +1,25 @@
+<div class="col-md-6 col-md-offset3">
+<%= form_for @thread do |f| %>
+
+<div class="form-group">
+	
+	<%= f.label :title %>
+	<%= f.text_field :title, class: 'form-control' %>
+
+</div><br>
+
+<div class="form-group">
+	
+	<%= f.label :content %>
+	<%= f.text_area :content, rows: 10, class: 'form-control' %>
+
+</div><br>
+
+<div class="form-group">
+	<%= f.submit "Buat", class: 'btn btn-primary form-control' %>
+</div>
+
+<% end %>
+
+	
+</div>
