@@ -2,18 +2,20 @@
 	<div class="col-md-6 col-md-offset-3">
 
 		<div class="thread">
-			<h4> <%= @threads.title.titleize %> </h4>
+			<h4> <%= @thread.title.titleize %> </h4>
 			<div class="meta">
-				<%= I18n.l(@threads.created_at.to_date) %> oleh <%= @threads.user.name %>
+				<%= I18n.l(@thread.created_at.to_date) %> oleh <%= @thread.user.name %>
 			</div>
 
 			<div class="content">
-				<%= @threads.content %>
+				<%= @thread.content %>
 			</div>
 		</div>
 
-		<% if @threads.forum_posts.any? %>
-		<% @threads.forum_posts.each do |p| %>
+
+
+		<% if @thread.forum_posts.any? %>
+		<% @thread.forum_posts.each do |p| %>
 
 		<div class="thread">
 			<div class="meta">
@@ -33,7 +35,17 @@
 
 		<% end %>
 
-		<%= form_for [@threads, @post] do |f| %>
+		<% if @post.errors.any? %>
+
+		<div class="alert alert-danger alert-dismissible">
+			<% @post.errors.full_messages.each do |error| %>
+				<%= error %><br>
+			<% end %>
+		</div>
+
+	<% end %>
+
+		<%= form_for [@thread, @post] do |f| %>
 
 			<div class="form-group">
 				<%= f.label :content %>
