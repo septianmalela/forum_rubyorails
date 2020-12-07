@@ -5,6 +5,7 @@ class ForumThreadsController < ApplicationController
 
 	def show
 		@threads = ForumThread.find(params[:id])
+		@post = ForumPost.new
 	end
 
 	def new
@@ -14,7 +15,7 @@ class ForumThreadsController < ApplicationController
 	def create
 		@thread = ForumThread.new(resource_params)
 		@thread.user = User.first
-		
+
 		if @thread.save
 		redirect_to root_path
 		else

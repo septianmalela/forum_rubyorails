@@ -2,7 +2,7 @@
 
 	<% if @thread.errors.any? %>
 
-		<div class="alert alert-danger">
+		<div class="alert alert-danger alert-dismissible">
 			<% @thread.errors.full_messages.each do |error| %>
 				<%= error %><br>
 			<% end %>

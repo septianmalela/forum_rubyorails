@@ -4,5 +4,8 @@ Rails.application.routes.draw do
 
   root "forum_threads#index"
 
-  resources :forum_threads, only: [:show, :new, :create]
+  resources :forum_threads, only: [:show, :new, :create] do
+  	resources :forum_posts, only: [:create]
+  end
+
 end

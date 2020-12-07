@@ -33,5 +33,18 @@
 
 		<% end %>
 
+		<%= form_for [@threads, @post] do |f| %>
+
+			<div class="form-group">
+				<%= f.label :content %>
+				<%= f.text_area :content, rows: 10, class: 'form-control' %>
+			</div><br>
+
+		<div class="form-group">
+			<%= f.submit "Buat", class: 'btn btn-primary form-control' %>
+		</div>
+
+		<% end %>
+
 	</div>
 </div>
