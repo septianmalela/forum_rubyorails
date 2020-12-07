@@ -5,7 +5,7 @@
 		<div class="thread">
 			<h4> <%= t.title.titleize %> </h4>
 			<div class="meta">
-				<%= t.created_at.strftime("%d-%B-%Y") %> oleh <%= t.user.name %>
+				<%= I18n.l(t.created_at.to_date) %> oleh <%= t.user.name %>
 			</div>
 
 			<div class="content">
