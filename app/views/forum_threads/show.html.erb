@@ -45,6 +45,8 @@
 
 	<% end %>
 
+	<% if user_signed_in? %>
+		
 		<%= form_for [@thread, @post] do |f| %>
 
 			<div class="form-group">
@@ -55,8 +57,11 @@
 		<div class="form-group">
 			<%= f.submit "Buat", class: 'btn btn-primary form-control' %>
 		</div>
-
 		<% end %>
+
+		<% else %>
+		<h3>login terlebih dahulu untuk comment</h3>
+	<% end %>
 
 	</div>
 </div>
