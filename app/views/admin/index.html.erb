@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin</title>
+  <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/js/jqueryui-editable.min.js"></script>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+
+      <%= render 'admin/navbaradmin' %>
+<div class="container">
+  
+<h3>Table Threads</h3>
+<div class="table table-hover">
+    <table class="table caption-top">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Title</th>
+          <th scope="col">Content</th>
+          <th scope="col">User Id</th>
+          <th scope="col">Jumlah Obrolan</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @thread.each do |threads| %>
+        <tr>
+          <td><%= threads.id %></td>
+          <td><%= threads.title %></td>
+          <td><%= threads.content %></td>
+          <td><%= threads.user_id %></td>
+          <td><%= threads.forum_posts_count %></td>
+          <td><%= threads.status %></td></a>
+          <td><%= link_to "Edit", edit_admin_path(threads) %></td></a>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+        <%== pagy_bootstrap_nav(@pagy) %>
+</div><br><br>
+
+
+<h3>Table Post</h3>
+<div class="table-responsive table-hover">
+    <table class="table caption-top">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">CONTENT</th>
+          <th scope="col">FORUM THREAD ID</th>
+          <th scope="col">USER ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post.each do |posts| %>
+        <tr>
+          <th><%= posts.id %></th>
+          <th><%= posts.content %></th>
+          <th><%= posts.forum_thread_id %></th>
+          <th><%= posts.user_id %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+        <%== pagy_bootstrap_nav(@pagy) %>
+</div><br>
+
+<h3>Table User</h3>
+<div class="table-responsive table-hover">
+    <table class="table caption-top">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">EMAIL</th>
+          <th scope="col">NAME</th>
+          <th scope="col">ROLE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.each do |users| %>
+        <tr>
+          <th><%= users.id %></th>
+          <th><%= users.email %></th>
+          <th><%= users.name %></th>
+          <th><%= users.role %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+        <%== pagy_bootstrap_nav(@pagy) %>
+</div>
+
+</div>
+  
+</body>
+</html>

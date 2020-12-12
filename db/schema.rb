@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_085329) do
+ActiveRecord::Schema.define(version: 2020_12_11_060649) do
 
   create_table "forum_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "content"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_085329) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "forum_posts_count", default: 0
+    t.boolean "status", default: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_085329) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.integer "level"
+    t.string "role", default: "user"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

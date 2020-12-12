@@ -1,0 +1,8 @@
+<%= form_for(@threads, url: admin_path) do |edit| %>
+
+	<p>Edit Status (true or false)</p>
+	<%= edit.text_field :status %><br>
+
+	<%= edit.submit "Save" %>
+
+<% end %>

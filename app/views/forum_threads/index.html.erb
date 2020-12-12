@@ -4,7 +4,11 @@
 		<% if user_signed_in? %>
 			<%= link_to "Buat Diskusi", new_forum_thread_path, class: 'btn btn-primary' %>
 		<% end %>
+
+
 		<% @thread.each do |t| %>
+		<% if t.status == true %>
+
 		<div class="thread">
 			<h4> <%= link_to t.title.titleize, forum_thread_path(t) %> </h4>
 			<div class="meta">
@@ -21,6 +25,7 @@
 
 			<div style="clear: both"></div>
 		</div>
+		<% end %>
 		<% end %>
 	</div>
 </div>

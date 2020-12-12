@@ -1,0 +1,5 @@
+class ForumPost < ApplicationRecord
+
+	
+
+end
