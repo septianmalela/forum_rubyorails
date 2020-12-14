@@ -48,7 +48,7 @@
         <% end %>
       </tbody>
     </table>
-        <%== pagy_bootstrap_nav(@pagy) %>
+        <%== pagy_bootstrap_nav(@pagy1) %>
 </div><br><br>
 
 
@@ -74,7 +74,7 @@
         <% end %>
       </tbody>
     </table>
-        <%== pagy_bootstrap_nav(@pagy) %>
+        <%== pagy_bootstrap_nav(@pagy2) %>
 </div><br>
 
 <h3>Table User</h3>
@@ -99,7 +99,32 @@
         <% end %>
       </tbody>
     </table>
-        <%== pagy_bootstrap_nav(@pagy) %>
+        <%== pagy_bootstrap_nav(@pagy3) %>
+</div><br>
+
+<h3>Table Like</h3>
+<div class="table-responsive table-hover">
+    <table class="table caption-top">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">LIKE</th>
+          <th scope="col">USER_ID</th>
+          <th scope="col">FORUM_THREAD_ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @like.each do |likes| %>
+        <tr>
+          <th><%= likes.id %></th>
+          <th><%= likes.like %></th>
+          <th><%= likes.user_id %></th>
+          <th><%= likes.forum_thread_id %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+        <%== pagy_bootstrap_nav(@pagy4) %>
 </div>
 
 </div>

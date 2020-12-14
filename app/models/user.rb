@@ -6,4 +6,10 @@ class User < ApplicationRecord
 
   has_many :forum_threads
   has_many :forum_posts
+
+  has_many :likes
+  has_many :forum_threads, through: :likes
+
+
+
 end

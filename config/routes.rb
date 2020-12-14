@@ -4,9 +4,14 @@ Rails.application.routes.draw do
 
   root "forum_threads#index"
 
+  	resources :users
   	resources :admin
-  	resources :forum_threads, only: [:show, :new, :create] do
-  	resources :forum_posts, only: [:create]
+  	resources :forum_threads, only: [:show, :new, :create] do member do  
+      patch 'like_thread'
+      patch 'dislike_thread'
+    end
+
+  	  resources :forum_posts, only: [:create]
   end
 
 end

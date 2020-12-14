@@ -9,7 +9,7 @@
 		<% @thread.each do |t| %>
 		<% if t.status == true %>
 
-		<div class="thread">
+		<div class="thread"><br>
 			<h4> <%= link_to t.title.titleize, forum_thread_path(t) %> </h4>
 			<div class="meta">
 				<%= I18n.l(t.created_at.to_date) %> oleh <%= t.user.name %>
@@ -19,6 +19,11 @@
 				<%= t.content %>
 			</div>
 
+			<% if user_signed_in? %>
+						<%= button_to "Like", like_thread_forum_thread_path(current_user.id), method: :patch %>
+						<%= button_to "Dislike", dislike_thread_forum_thread_path(current_user.id), method: :patch %>
+			<% end %>
+
 			<div class="count">
 				<%= t.forum_posts.count %> obrolan
 			</div>
@@ -27,5 +32,7 @@
 		</div>
 		<% end %>
 		<% end %>
+
+
 	</div>
 </div>

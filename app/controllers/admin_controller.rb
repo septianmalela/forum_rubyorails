@@ -2,9 +2,10 @@ class AdminController < ApplicationController
 	layout :false
 
 	def index
-		@pagy, @thread = pagy(ForumThread.all, items: 5)
-		@pagy, @post = pagy(ForumPost.all, items: 5)
-		@pagy, @user = pagy(User.all, items: 5)
+		@pagy1, @thread = pagy(ForumThread.all, items: 5)
+		@pagy2, @post = pagy(ForumPost.all, items: 6)
+		@pagy3, @user = pagy(User.all, items: 7)
+		@pagy4, @like = pagy(Like.all, items: 15)
 	end
 
 	def edit
