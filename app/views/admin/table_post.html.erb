@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin</title>
   <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+    <%= csp_meta_tag %>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -17,42 +17,35 @@
 </head>
 <body>
 
-      <%= render 'admin/navbaradmin' %><br>
-<div class="container">
+<%= render 'admin/navbaradmin' %><br>
+
+	<div class="container">
       <%= render 'admin/link_table' %>
+		<h3>Table Post</h3>
+			<div class="table-responsive table-hover">
+			    <table id="example" class="display">
+			      <thead>
+			        <tr>
+			          <th scope="col">ID</th>
+			          <th scope="col">CONTENT</th>
+			          <th scope="col">FORUM THREAD ID</th>
+			          <th scope="col">USER ID</th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			        <% @post.each do |posts| %>
+			        <tr>
+			          <th><%= posts.id %></th>
+			          <th><%= posts.content %></th>
+			          <th><%= posts.forum_thread_id %></th>
+			          <th><%= posts.user_id %></th>
+			        </tr>
+			        <% end %>
+			      </tbody>
+			    </table>
+			</div><br>
+	</div>
 
-  <h3>Table Threads</h3>
-  <div class="table table-hover">
-      <table id="example" class="display">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Title</th>
-            <th scope="col">Content</th>
-            <th scope="col">User Id</th>
-            <th scope="col">Jumlah Obrolan</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @thread.each do |threads| %>
-          <tr>
-            <td><%= threads.id %></td>
-            <td><%= threads.title %></td>
-            <td><%= threads.content %></td>
-            <td><%= threads.user_id %></td>
-            <td><%= threads.forum_posts_count %></td>
-            <td><%= threads.status %></td></a>
-            <td><%= link_to "Edit", edit_admin_path(threads) %></td></a>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-  </div><br><br>
-
-</div>
-  
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.jqueryui.min.js"></script>

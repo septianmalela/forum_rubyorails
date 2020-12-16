@@ -22,6 +22,8 @@ gem 'devise'
 
 gem 'pagy', '~> 3.5'
 
+gem 'cancan'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

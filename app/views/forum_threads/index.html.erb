@@ -1,6 +1,13 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 
+		<% flash.each do |key, value| %>
+		  <div class="alert alert-danger" <%= key %> >
+		    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    <%= value %>
+		   </div>
+		<% end %>
+
 		<% if user_signed_in? %>
 			<%= link_to "Buat Diskusi", new_forum_thread_path, class: 'btn btn-primary' %>
 		<% end %>
@@ -19,9 +26,14 @@
 				<%= t.content %>
 			</div>
 
+			<% unless current_user && current_user.role == 'admin' %>
 			<% if user_signed_in? %>
-						<%= button_to "Like", like_thread_forum_thread_path(current_user.id), method: :patch %>
-						<%= button_to "Dislike", dislike_thread_forum_thread_path(current_user.id), method: :patch %>
+				<%= button_to("Dislike", dislike_thread_forum_thread_like_path(current_user.id, t), method: :patch) if t.liked_by_user(current_user) %>
+				<%= button_to("Like", like_thread_forum_thread_like_path(current_user.id, t), method: :patch) unless t.liked_by_user(current_user) %>
+			<% end %>
+
+        	<%else%>
+        	
 			<% end %>
 
 			<div class="count">
