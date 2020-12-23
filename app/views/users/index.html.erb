@@ -1,0 +1,33 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-success" <%= key %> >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <%= value %>
+   </div>
+<% end %>
+
+<div class="container">
+	<div class="row">
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Email</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">Role</th>
+		      <th scope="col">Slug</th>
+		      <th scope="col">Avatar</th>
+		      <th scope="col">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row"><%= current_user.email %></th>
+		      <th scope="row"><%= current_user.name %></th>
+		      <th scope="row"><%= current_user.role %></th>
+		      <th scope="row"><%= current_user.slug %></th>
+		      <th scope="row"><%= image_tag current_user.avatar.url unless current_user.avatar.nil? %></th>
+		      <th scope="row"><%= link_to "Edit", edit_user_path(current_user.id), class: 'btn btn-warning' %></th>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</div>

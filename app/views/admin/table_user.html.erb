@@ -31,6 +31,7 @@
               <th scope="col">EMAIL</th>
               <th scope="col">NAME</th>
               <th scope="col">ROLE</th>
+              <th scope="col">FOTO</th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +41,7 @@
               <th><%= users.email %></th>
               <th><%= users.name %></th>
               <th><%= users.role %></th>
+              <th><%= image_tag users.avatar.url unless users.avatar.nil? %></th>
             </tr>
             <% end %>
           </tbody>

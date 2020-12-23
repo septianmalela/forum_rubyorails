@@ -3,15 +3,15 @@ class AdminController < ApplicationController
 	before_action :must_be_admin
 
 	def index
-		@pagy1, @thread = pagy(ForumThread.all, items: 5)
+		@thread = ForumThread.all
 	end
 
 	def edit
-		@threads = ForumThread.find_by_id(params[:id])
+		@threads = ForumThread.friendly.find(params[:id])
 	end
 
 	def update
-	@threads = ForumThread.find(params[:id])
+	@threads = ForumThread.friendly.find(params[:id])
     @threads.update(resource_params)
 
     redirect_to admin_path
@@ -22,15 +22,16 @@ class AdminController < ApplicationController
 	end
 
 	def table_post
-		@pagy2, @post = pagy(ForumPost.all, items: 6)
+		@post = ForumPost.all
+		# @pagy2, @post = pagy(ForumPost.all, items: 6)
 	end
 
 	def table_user
-		@pagy3, @user = pagy(User.all, items: 7)
+		@user = User.all
 	end
 
 	def table_like
-		@pagy4, @like = pagy(Like.all, items: 15)
+		@like = Like.all
 	end
 
 	private

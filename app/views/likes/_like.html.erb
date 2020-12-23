@@ -1,4 +1,0 @@
-<% if user_signed_in? %>
-		<%= link_to "Like", { :controller=>:likes, :action=> :create, :forum_thread_id => ForumThread.find_by(params[:forum_thread_id]), :user_id => current_user.id }, method: :update %>
-
-<% end %>

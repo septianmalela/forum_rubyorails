@@ -21,6 +21,13 @@
 <div class="container">
       <%= render 'admin/link_table' %>
 
+<% flash.each do |key, value| %>
+      <div class="alert alert-primary" <%= key %> >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= value %>
+       </div>
+    <% end %>
+
   <h3>Table Threads</h3>
   <div class="table table-hover">
       <table id="example" class="display">
@@ -32,7 +39,8 @@
             <th scope="col">User Id</th>
             <th scope="col">Jumlah Obrolan</th>
             <th scope="col">Status</th>
-            <th scope="col">Action</th>
+            <th scope="col">Slug</th>
+            <th scope="col">Persetujuan</th>
           </tr>
         </thead>
         <tbody>
@@ -43,8 +51,14 @@
             <td><%= threads.content %></td>
             <td><%= threads.user_id %></td>
             <td><%= threads.forum_posts_count %></td>
-            <td><%= threads.status %></td></a>
-            <td><%= link_to "Edit", edit_admin_path(threads) %></td></a>
+            <td><%= threads.status %></td>
+            <td><%= threads.slug %></td>
+            <% if user_signed_in? %> 
+              <td>
+                <%= button_to("Decline", false_thread_forum_thread_path(threads), method: :patch) if threads.accept_status_by_admin(threads.status) %>
+                <%= button_to("Accept", true_thread_forum_thread_path(threads), method: :patch)  unless threads.accept_status_by_admin(threads.status) %>
+              </td>
+            <% end %>
           </tr>
           <% end %>
         </tbody>

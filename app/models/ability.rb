@@ -1,20 +1,6 @@
 class Ability
   include CanCan::Ability
-
-    def initialize(user)
-        can :read, ForumThread,ForumPost, public: true
-
-        if user.admin?
-            can :manage, all
-            can :read, ForumThread,ForumPost
-            can :write, ForumThread,ForumPost
-            if user.member
-                can :read, ForumThread,ForumPost
-                can :write, ForumThread,ForumPost
-            end
-        end
-        
-    end
+  
 
     # Define abilities for the passed in user here. For example:
     #

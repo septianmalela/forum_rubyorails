@@ -2,13 +2,20 @@ class ForumThreadsController < ApplicationController
 
 	before_action :authenticate_user!, only: [:new,:create]
 	# before_action :set_forum_thread, only: [:show, :like_thread, :dislike_thread]
+    before_action :status_forum_thread, only: [:show, :true_thread, :false_thread]
 
 	def index
-		@thread = ForumThread.order(id: :desc)
+		@pagy, @thread = pagy(ForumThread.order(id: :desc), items: 6)
+		# @pagy2, @post = pagy(ForumPost.all, items: 6)
 	end
 
 	def show
-		@thread = ForumThread.find(params[:id])
+		@thread = ForumThread.friendly.find(params[:id])
+		if @thread.status != true
+			flash[:notice] = "Anda Tidak Mengakses Halaman Ini!!!"
+		    redirect_to root_path
+		    return
+		end
 		@post = ForumPost.new
 	end
 
@@ -28,17 +35,29 @@ class ForumThreadsController < ApplicationController
 
 	end
 
-	# def like_thread
-	# 	liked_thread = @thread.likes.find_or_create_by(user: current_user)
-	# 	liked_thread.update(like: true)
-	# 	redirect_to root_path(@thread)
-	# end
+	def true_thread
+		@threads = ForumThread.friendly.find(params[:id])
+		@threads.update_attributes(:status => true)
+		flash[:notice] = "Admin Accept Thread '#{@threads.title}'"
 
-	# def dislike_thread
-	# 	disliked_thread = @thread.likes.find_or_create_by(user: current_user)
-	# 	disliked_thread.update(like: false)
-	# 	redirect_to root_path(@thread)
-	# end
+	    if @threads
+	      redirect_to admin_index_path(@user)
+	    else
+	     redirect_to admin_index_path
+	    end
+	end
+
+	def false_thread
+		@threads = ForumThread.friendly.find(params[:id])
+		@threads.update_attributes(:status => false)
+		flash[:notice] = "Admin Decline Thread '#{@threads.title}' "
+
+	    if @threads
+	      redirect_to admin_index_path(@user)
+	    else
+	     redirect_to admin_index_path
+	    end
+	end
 
 	private
 
@@ -46,7 +65,7 @@ class ForumThreadsController < ApplicationController
 		params.require(:forum_thread).permit(:title, :content)
 	end
 
-	# def set_forum_thread
-	# 	@thread = ForumThread.find(params[:id])
-	# end
+	def status_forum_thread
+		@thread = ForumThread.friendly.find(params[:id])
+	end
 end

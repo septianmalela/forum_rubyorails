@@ -13,4 +13,11 @@ class ForumThread < ApplicationRecord
 		likes.find_by(user: user)&.like || false
 	end
 
+	def accept_status_by_admin(user)
+	    ForumThread.find_by(user: user)&.status || false
+	end	
+
+	extend FriendlyId
+  		friendly_id :title, use: :slugged
+
 end

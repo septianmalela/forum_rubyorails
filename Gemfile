@@ -22,7 +22,13 @@ gem 'devise'
 
 gem 'pagy', '~> 3.5'
 
-gem 'cancan'
+gem 'friendly_id', '~> 5.4.0'
+
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
+gem 'fog-aws'
+gem 'figaro'
+gem "pundit"
 
 
 # Use Redis adapter to run Action Cable in production

@@ -2,9 +2,15 @@
 
       <% unless current_user && current_user.role == 'admin' %>
           <%= link_to "Forum", root_path, class: 'navbar-brand' %>
+      <% if user_signed_in? %>
+          <%= link_to "Profile", users_path, class: 'navbar-brand' %>
+      <% end %>
         <%else%>
           <%= link_to "Forum", root_path, class: 'navbar-brand' %>
           <%= link_to "Admin", admin_index_path, class: 'navbar-brand' %>
+          <% link_to "Admin", table_post_admin_index_path, class: 'navbar-brand' %>
+          <% link_to "Admin", table_user_admin_index_path, class: 'navbar-brand' %>
+          <% link_to "Admin", table_like_admin_index_path, class: 'navbar-brand' %>
         <%end%>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

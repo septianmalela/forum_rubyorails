@@ -1,5 +1,5 @@
-class ForumPost < ApplicationRecord
+class Admin < ApplicationRecord
 
 	
-
+	
 end
